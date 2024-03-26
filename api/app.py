@@ -9,9 +9,9 @@ app = FastAPI(port=PORT)
 @app.get("/")
 async def root():
     """Route that return 'Alive!' if the server runs."""
-    return {"Status": "Alive!"}
+    return {"Status": "alive"}
 
-@app.get("/hello")
-async def say_hello(user: str = "Anonymous"):
+@app.post("/predict")
+async def predict(user: str = "Anonymous"):
     """Route that will return 'hello {user}'."""
     return {"Message": f"Hello {user}!"}
