@@ -39,7 +39,7 @@ async def predict(user: str = "Anonymous"):
     return {"Message": f"Hello {user}!"}
 
 @app.post("/predict", response_model=OutputData, tags=["predict"])
-async def predict(input: InputData):
+async def predict_price(input: InputData):
     try:
         # Convert input to the format your prediction function expects
         input_dict = input.dict()

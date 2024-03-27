@@ -1,7 +1,6 @@
 from joblib import load
 from fastapi import HTTPException
 import pandas as pd
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from statsmodels.tools import add_constant
 
 
@@ -36,8 +35,8 @@ def predict_method(input_data):
     try:
         # Convert the input data from Pydantic model to a format suitable for prediction
         processed_data = preprocess_input_data(input_data)
-        rocessed_data_with_const = add_constant(processed_data, has_constant='add')
-        prediction = model.predict(rocessed_data_with_const)
+        processed_data_with_const = add_constant(processed_data, has_constant='add')
+        prediction = model.predict(processed_data_with_const)
         return prediction[0]
     except Exception as e:
         # Handle errors gracefully
