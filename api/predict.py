@@ -10,6 +10,8 @@ encoder = load('./api/models/HOUSE_encoder.joblib')
 scaler = load('./api/models/HOUSE_scaler.joblib')
 column_order = load('./api/models/HOUSE_columns.joblib')
 
+print(type(model))
+
 def preprocess_input_data(input_data):
     df = pd.DataFrame([input_data])
     # Apply one-hot encoding
