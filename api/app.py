@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, conint, confloat
 from typing import Optional
-from . import predict as predict_module
+from predict import predict_method
 
 app = FastAPI()
 
@@ -43,7 +43,7 @@ async def predict(input: InputData):
     try:
         # Convert input to the format your prediction function expects
         input_dict = input.dict()
-        prediction = predict_module.predict(input_dict)
+        prediction = predict_method(input_dict)
         
         return OutputData(prediction=prediction, status_code=200)
     except Exception as e:

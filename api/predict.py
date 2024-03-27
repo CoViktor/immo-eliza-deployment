@@ -2,6 +2,7 @@ from joblib import load
 from fastapi import HTTPException
 import pandas as pd
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from statsmodels.tools import add_constant
 
 
 # Check for house or appartment split
@@ -9,8 +10,6 @@ model = load('./api/models/HOUSE_trained_mlr_model.joblib')
 encoder = load('./api/models/HOUSE_encoder.joblib')
 scaler = load('./api/models/HOUSE_scaler.joblib')
 column_order = load('./api/models/HOUSE_columns.joblib')
-
-print(type(model))
 
 def preprocess_input_data(input_data):
     df = pd.DataFrame([input_data])
@@ -32,13 +31,14 @@ def preprocess_input_data(input_data):
 
     return df
 
-def predict(input_data):
+def predict_method(input_data):
     # Note that this function should not return OutputData; it should return the prediction value
     try:
         # Convert the input data from Pydantic model to a format suitable for prediction
         processed_data = preprocess_input_data(input_data)
-        prediction = model.predict(processed_data)
-        return prediction
+        rocessed_data_with_const = add_constant(processed_data, has_constant='add')
+        prediction = model.predict(rocessed_data_with_const)
+        return prediction[0]
     except Exception as e:
         # Handle errors gracefully
         raise HTTPException(status_code=500, detail=str(e))

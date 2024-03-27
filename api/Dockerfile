@@ -12,4 +12,4 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY . /app
 
 # Command to run the application using uvicorn
-CMD ["uvicorn", "api.app:app", "--host", "0.0.0.0"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0"]
