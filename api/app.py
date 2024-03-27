@@ -1,14 +1,13 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, conint, confloat
 from typing import Optional
-from .predict import predict
-import os
+from . import predict as predict_module
 
 app = FastAPI()
 
 class InputData(BaseModel):
     PostalZone: str  # Extracted from the PostalCode, likely the first few characters
-    PropertyType: str  # e.g., 'house', 'apartment', etc.
+    PropertyType: str  # e.g., 'house', 'apartment'
     PropertySubType: str  # e.g., 'bungalow', 'villa', etc.
     ConstructionYear: Optional[conint(ge=0)] = None  # Assuming a positive integer or None
     BedroomCount: Optional[conint(ge=0)] = None
@@ -44,7 +43,7 @@ async def predict(input: InputData):
     try:
         # Convert input to the format your prediction function expects
         input_dict = input.dict()
-        prediction = predict.predict(input_dict)  # -> isn't this already imported?
+        prediction = predict_module.predict(input_dict)
         
         return OutputData(prediction=prediction, status_code=200)
     except Exception as e:
