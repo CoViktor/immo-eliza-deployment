@@ -12,7 +12,7 @@ if PropertyType == 'House':
 elif PropertyType == 'Apartment':
     PropertySubType = st.selectbox('Subtype:', ('Apartment', 'Ground_Floor', 'Duplex', 'Flat_Studio', 'Penthouse', 'Service_Flat', 'Loft', 'Kot', 'Triplex'))
 else:
-    PropertySubType = st.write('Pick property type')
+    PropertySubType = st.selectbox('Pick one:', ('Option 1', 'Option 2', 'Option 3'))
 ConstructionYear = st.text_input('Construction year:')
 ConstructionYear = int(ConstructionYear) if ConstructionYear else None
 BedroomCount = st.slider('Amount of bedrooms:', 0, 10)
@@ -28,7 +28,7 @@ else:
 Facades = st.slider('Amount of facades:', 0, 10)
 SwimmingPool = st.checkbox('Has a swimming pool?')
 Condition = PropertySubType = st.radio('Pick one:', ('Good', 'As_New', 'To_Be_Done_Up', 'Just_Renovated', 'To_Renovate', 'To_Restore'))
-EnergyConsumptionPerSqm = st.slider('Energy consumption per square meter:', 0.0, 500.0)
+EnergyConsumptionPerSqm = st.slider('Energy consumption per square meter:', 0.0, 1000.0)
 
 
 url = 'https://immo-eliza-deployment-api.onrender.com/predict'
@@ -57,10 +57,11 @@ print(response.json())
 
 if st.button("Click me to get a price estimation!"):
     try:
+        # Send a POST request to the API endpoint
         url = 'https://immo-eliza-deployment-api.onrender.com/predict'
         headers = {'Content-type': 'application/json'}
         response = requests.post(url, data=json.dumps(data), headers=headers)
-
+        # Display the output JSON received from the API
         prediction = response.json()["prediction"]
         st.subheader("Result:")
         st.write(f"The property will probably cost about: €{round(prediction, 2)}")
