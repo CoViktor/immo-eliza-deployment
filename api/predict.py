@@ -5,10 +5,10 @@ from statsmodels.tools import add_constant
 
 
 # Check for house or appartment split
-model = load('./api/models/HOUSE_trained_mlr_model.joblib') 
-encoder = load('./api/models/HOUSE_encoder.joblib')
-scaler = load('./api/models/HOUSE_scaler.joblib')
-column_order = load('./api/models/HOUSE_columns.joblib')
+model = load('./models/HOUSE_trained_mlr_model.joblib') 
+encoder = load('./models/HOUSE_encoder.joblib')
+scaler = load('./models/HOUSE_scaler.joblib')
+column_order = load('./models/HOUSE_columns.joblib')
 
 def preprocess_input_data(input_data):
     df = pd.DataFrame([input_data])
