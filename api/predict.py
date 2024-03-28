@@ -5,12 +5,17 @@ from statsmodels.tools import add_constant
 
 
 # Check for house or appartment split
-model = load('./models/HOUSE_trained_mlr_model.joblib') 
-encoder = load('./models/HOUSE_encoder.joblib')
-scaler = load('./models/HOUSE_scaler.joblib')
-column_order = load('./models/HOUSE_columns.joblib')
+def load_training(type: str):
+    typing = type.upper()
+    model = load(f'./models/{typing}_trained_mlr_model.joblib') 
+    encoder = load(f'./models/{typing}_encoder.joblib')
+    scaler = load(f'./models/{typing}_scaler.joblib')
+    column_order = load(f'./models/{typing}_columns.joblib')
 
-def preprocess_input_data(input_data):
+    return model, encoder, scaler, column_order
+
+def preprocess_input_data(input_data, propertytype='house'):
+    model, encoder, scaler, column_order = load_training(propertytype)
     df = pd.DataFrame([input_data])
     # Apply one-hot encoding
     # For the incoming data, we assume we need to transform only, not fit_transform
@@ -37,8 +42,9 @@ def preprocess_input_data(input_data):
 def predict_method(input_data):
     # Note that this function should not return OutputData; it should return the prediction value
     try:
+        property_type = input_data.PropertyType
         # Convert the input data from Pydantic model to a format suitable for prediction
-        processed_data = preprocess_input_data(input_data)
+        processed_data = preprocess_input_data(input_data, property_type)
         processed_data_with_const = add_constant(processed_data, has_constant='add')
         prediction = model.predict(processed_data_with_const)
         return round(prediction[0], 2)
