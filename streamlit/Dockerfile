@@ -1,7 +1,7 @@
-# Use the official Python image as a base image
+# Python image
 FROM python:3.10
 
-# Set the working directory in the container
+# Working directory
 WORKDIR /app
 
 # Copy the requirements file into the container
