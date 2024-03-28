@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, conint, confloat
 from typing import Optional
-from .predict import predict_method
+from predict import predict_method
 
 app = FastAPI()
 
