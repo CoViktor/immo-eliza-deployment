@@ -5,11 +5,12 @@ from .predict import predict_method
 
 app = FastAPI()
 
+
 class InputData(BaseModel):
-    PostalZone: str  # Extracted from the PostalCode, likely the first few characters
-    PropertyType: str  # e.g., 'house', 'apartment'
-    PropertySubType: str  # e.g., 'bungalow', 'villa', etc.
-    ConstructionYear: Optional[conint(ge=0)] = None  # Assuming a positive integer or None
+    PostalZone: str  # 2 first numbers of postalcode
+    PropertyType: str  # e.g. 'House', 'Apartment'
+    PropertySubType: str  # e.g. House: 'House', 'Villa', 'Town_House', 'Apartment_Block', 'Mixed_Use_Building', 'Bungalow ', 'Mansion', 'Exceptional_Property', 'Country_Cottage', 'Chalet', 'Manor_House', 'Other_Property', 'Farmhouse'
+    ConstructionYear: Optional[conint(ge=0)] = None  # e.g. Apartment: 'Apartment', 'Ground_Floor', 'Duplex', 'Flat_Studio', 'Penthouse', 'Service_Flat', 'Loft', 'Kot', 'Triplex'
     BedroomCount: Optional[conint(ge=0)] = None
     LivingArea: Optional[conint(ge=0)] = None
     Furnished: Optional[int] = None
@@ -19,7 +20,7 @@ class InputData(BaseModel):
     GardenArea: Optional[conint(ge=0)] = None
     Facades: Optional[conint(ge=0)] = None
     SwimmingPool: Optional[int] = None
-    Condition: str  # This might be restricted to certain values like 'new', 'good', 'renovate'
+    Condition: str  # e.g. 'Good', 'As_New', 'To_Be_Done_Up', 'Just_Renovated', 'To_Renovate', 'To_Restore'
     EnergyConsumptionPerSqm: Optional[confloat(ge=0)] = None  # Assuming a positive float or None
 
 
