@@ -42,7 +42,7 @@ def preprocess_input_data(input_data, propertytype='house'):
 def predict_method(input_data):
     # Note that this function should not return OutputData; it should return the prediction value
     try:
-        property_type = input_data.PropertyType
+        property_type = input_data['PropertyType']
         # Convert the input data from Pydantic model to a format suitable for prediction
         processed_data = preprocess_input_data(input_data, property_type)
         processed_data_with_const = add_constant(processed_data, has_constant='add')
