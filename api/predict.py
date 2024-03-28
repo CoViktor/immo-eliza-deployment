@@ -16,17 +16,21 @@ def preprocess_input_data(input_data):
     # For the incoming data, we assume we need to transform only, not fit_transform
     categorical_features = df.select_dtypes(include=['object']).columns
     encoded_features = encoder.transform(df[categorical_features]).toarray()
-    encoded_features_df = pd.DataFrame(encoded_features,
-                                       columns=encoder.get_feature_names_out(categorical_features))
+    encoded_features_df = pd.DataFrame(encoded_features, columns=encoder.get_feature_names_out(categorical_features))
     # Drop original categorical columns
     df = df.drop(columns=categorical_features)
-    # Concatenate the one-hot encoded columns back to the DataFrame
-    df = pd.concat([df, encoded_features_df], axis=1)
-    # Apply scaling
+    # Concatenate encoded features
+    df = pd.concat([df.reset_index(drop=True), encoded_features_df.reset_index(drop=True)], axis=1)
+    # Scale numeric features
     numeric_features = df.select_dtypes(include=['float64', 'int64']).columns
     df[numeric_features] = scaler.transform(df[numeric_features])
-    # Ensure the column order matches the training data
-    df = df.reindex(columns=column_order, fill_value=0)
+
+    # Ensure all columns are present
+    missing_cols = set(column_order) - set(df.columns)
+    for c in missing_cols:
+        df[c] = 0
+
+    df = df[column_order]
 
     return df
 
@@ -37,7 +41,7 @@ def predict_method(input_data):
         processed_data = preprocess_input_data(input_data)
         processed_data_with_const = add_constant(processed_data, has_constant='add')
         prediction = model.predict(processed_data_with_const)
-        return prediction[0]
+        return round(prediction[0], 2)
     except Exception as e:
         # Handle errors gracefully
         raise HTTPException(status_code=500, detail=str(e))

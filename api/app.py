@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, conint, confloat
 from typing import Optional
-from predict import predict_method
+from .predict import predict_method
 
 app = FastAPI()
 
@@ -12,13 +12,13 @@ class InputData(BaseModel):
     ConstructionYear: Optional[conint(ge=0)] = None  # Assuming a positive integer or None
     BedroomCount: Optional[conint(ge=0)] = None
     LivingArea: Optional[conint(ge=0)] = None
-    Furnished: Optional[bool] = None
-    Fireplace: Optional[bool] = None
-    Terrace: Optional[bool] = None
-    Garden: Optional[bool] = None
+    Furnished: Optional[int] = None
+    Fireplace: Optional[int] = None
+    Terrace: Optional[int] = None
+    Garden: Optional[int] = None
     GardenArea: Optional[conint(ge=0)] = None
     Facades: Optional[conint(ge=0)] = None
-    SwimmingPool: Optional[bool] = None
+    SwimmingPool: Optional[int] = None
     Condition: str  # This might be restricted to certain values like 'new', 'good', 'renovate'
     EnergyConsumptionPerSqm: Optional[confloat(ge=0)] = None  # Assuming a positive float or None
 
