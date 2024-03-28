@@ -4,7 +4,7 @@ from typing import Optional
 from predict import predict_method
 
 app = FastAPI()
-
+# Run from inside the api folder: uvicorn app:app --reload
 
 class InputData(BaseModel):
     PostalZone: str  # 2 first numbers of postalcode
@@ -45,7 +45,9 @@ async def predict_price(input: InputData):
         # Convert input to the format your prediction function expects
         input_dict = input.dict()
         prediction = predict_method(input_dict)
+
+        formatted_prediction = f"€{prediction}"
         
-        return OutputData(prediction=prediction, status_code=200)
+        return OutputData(prediction=formatted_prediction, status_code=200)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
