@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import requests
+import json
 
 st.title('Immo Eliza') 
 st.write('Fill in the form below to predict the price of your dream house!')
@@ -29,9 +31,41 @@ SwimmingPool = st.checkbox('Has a swimming pool?')
 Condition = PropertySubType = st.radio('Pick one:', ('Good', 'As_New', 'To_Be_Done_Up', 'Just_Renovated', 'To_Renovate', 'To_Restore'))
 EnergyConsumptionPerSqm = st.slider('Energy consumption per square meter:', 0.0, 1000.0)
 
-st.button('Click me to get a price estimation!')
+
+url = 'https://immo-eliza-deployment-api.onrender.com/predict'
+data = {
+    "PostalZone": PostalZone,
+    "PropertyType": PropertyType,
+    "PropertySubType": PropertySubType,
+    "ConstructionYear": ConstructionYear,
+    "BedroomCount": BedroomCount,
+    "LivingArea": LivingArea,
+    "Furnished": Furnished,
+    "Fireplace": Fireplace,
+    "Terrace": Terrace,
+    "Garden": Garden,
+    "GardenArea": GardenArea,
+    "Facades": Facades,
+    "SwimmingPool": SwimmingPool,
+    "Condition": Condition,
+    "EnergyConsumptionPerSqm": EnergyConsumptionPerSqm
+}
+headers = {'Content-type': 'application/json'}
 
 
-# input the above as a json file
-# run the render link
-# get the output & display i
+response = requests.post(url, data=json.dumps(data), headers=headers)
+print(response.json())
+
+if st.button("Click me to get a price estimation!"):
+    try:
+        # Send a POST request to the API endpoint
+        url = 'https://immo-eliza-deployment-api.onrender.com/predict'
+        headers = {'Content-type': 'application/json'}
+        response = requests.post(url, data=json.dumps(data), headers=headers)
+        # Display the output JSON received from the API
+        prediction = response.json()["prediction"]
+        st.subheader("Result:")
+        st.write(f"The property will probably cost about: €{round(prediction, 2)}")
+    except Exception as e:
+        st.error(f"Error: {e}")
+
