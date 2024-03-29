@@ -64,7 +64,7 @@ Then, start the FastAPI server with:
 ```
 uvicorn api/app:app --reload
 ```
-The **--reload** flag enables auto-reload so the server will restart after code changes. By default, the FastAPI app will be available at **http://127.0.0.1:8000**.
+The **--reload** flag enables auto-reload so the server will restart after code changes. By default, the FastAPI app will be available at: <br> **http://127.0.0.1:8000**
 
 ### Streamlit Frontend
 To run the Streamlit app locally, navigate to the streamlit/ directory. Make sure Streamlit is installed, or install it using pip:
@@ -75,7 +75,7 @@ Then, start the Streamlit app with:
 ```
 streamlit run streamlit/streamlit_app.py
 ```
-Streamlit will automatically open the application in your default web browser, typically available at **http://localhost:8501**.
+Streamlit will automatically open the application in your default web browser, typically available at: <br> **http://localhost:8501**
 
 
 
