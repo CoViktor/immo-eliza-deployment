@@ -1,1 +1,83 @@
 # immo-eliza-deployment
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white)
+
+This project is a web-based application for predicting real estate prices using a multiple linear regression model, designed to provide instant property price estimations based on user input. The backend API, built with FastAPI, processes prediction requests, while the frontend, created with Streamlit, offers an intuitive interface for users to input property details.
+
+<img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAQEBAPDxIPEA8PEA8QDw8PDxUPDxAQFRIWFhURFRUYHSggGB0lGxUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGhAQGi0lHyItLS0vKy0tLi4tLSsvLSsrKy0tLS0tLS0tLS0rLSstLSstLS0tLSstLS0rLS0tLS0rLf/AABEIALcBEwMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAADAAECBAYFBwj/xABNEAACAQIDAwUJCwoEBwEAAAABAgADEQQSIQUxQQYTUWFxByIyU4GRobHSFBUjQlJUkpPB0fAWFzNEYnKUo7LCc4LT4UN0g6Kk4/Fk/8QAGQEBAQADAQAAAAAAAAAAAAAAAAECAwQF/8QAJxEBAAICAQIGAgMBAAAAAAAAAAECAxExEiEEEyJBUWEUkXGB0UL/2gAMAwEAAhEDEQA/AOUBCARlEmonQwOBJgRASYEB1EmBGUQgEIQEkBHAkgIQgJICOFkwIEQJICSAkgsCNo4WTCyQWEDCyWWTAjgQBZYssNliywAZYxWHKyJWAArIFZYKyBWAArIFZYIkCIVXIkGEOwkGEABEgRDMINhIoJEGRDESDCAEiQIhWEgYUFhINCkSDSAUUlFCrywgkVEIBMkSUSaiMok1ECSiEAkVEKBCEBJgRgIQCVCAkwI6iTVYEQJMCSCyYWEQCx8sIFkgkIGFjhYUJHCQBZYisNkiyQAFZErLBSRKQKxWRKyyUkCkCsVgyJZZYNlkVXYQbCWGWDZYVXIg2EsMsGwgV2EGwhyIJhIoLCQMKwgyIAWgzDEQbCFDtFEY8g6CwiiQUQiiZCaiEUSKiFUQh1EKokVEKohCUQirEqwirKEqwgWOqwirCGCyarJAQirCIBJMJJhZMLCBBJIJChY4WALJFkhssWWAApIlJYyyJWBWKSBSWmWDKwKrLBMstssEywqoywbLLTCCYSKqssEwlplgmECqwgmEssIJhCq7CDYQ7CCYSKAwg8pOkuYbBvVbLTBJ49AHSTwmp2XsZKPfNZ6g+NwX90fbNWTLFP5b8WG2SfpwKHJuuyhrBb62ZgCO0RpsiRFOT8i7t/FxsMsKog1EMonovLSUQqiRUQqiBJRCqJFRCqJUSUQiiMohlWEJRChYlWFVYQyrCqsdVhVWEQCyYWEVZMLAGEkgkKFkgkAOSNlljLGyQK5SMUlkrIlYRVZINkltkkCsKpOkEyS6ywLLApMsCyy66wLrCqjLAMsuOsC6yKqMIFlltlgxSLEKoJY6AAXJklYU2Eu7P2O9WzN3lPpO9v3R9s6uE2QKdmqgM58FN6r1sePZOuEA1JubeTsnJl8T7Vd+Hwn/AFf9AYbCrTXJTACj09Z6ZJjaPWqgTnYjFjcJx727ojXAzVdYpzKmNUG1xFGlcZBDKIJBDqJ7Dwk1EMokFEMohElEMokVEMglRJVhVWMiwyrCHVYVViVYVFhDqsKqxKIZFgMqyYWSVZMLIIBZMLJhZICALLFlhbRWgByyJWHtGIgVysgyywRIMIFR0gXWXGEAywioywLrLjLAssqqTLAssuOsC6wqmyTR7MwAopcgc43hHoHyRK2ysFqKrjQeAD09Mu43EWHWd3VOHxGXfph6PhcOvXKjtTG5d2plXD4skXMq7QGYXJ/BlemQiWP4PC849PQWdo4yyk9E4rYwndx8+sJjqoIJO7fbo4GBwuEJ5njcMS3VmIHotCjU6dwD09sU6wwgEUqOKgh1EGgh0E9h4AiCHUQaCHQSomgh0WQQQyCETRZewGCaq1l0A8JuCj8cI2z8E1VrDRR4TcB/vNE9SlhqfQo3AaszfaZJnS1rtRxmz6NFC7s9huAtdj0DSczZ1QVWKjvTZjY2bQAkEX37osVXaq2ep/kTgg+/rlCvSYNzlO4YalQbZutTwb0HceBHPObvpv8AKjTj++GLv+lO/wAVT+6bLDqQqgnMbC7EAFj02EyuUb13a9o8/XpbgdJraQ0XsHqmWKZ77Y5YjtoRRCARlk1m1oICSCxSV4U2WMVj5o7GBArIkfjzffJEmMT64AyJFlhDIEwgLLAsssMYNhKKzCCdZYcQTSorOsnhMHnNz4A39fVDUsPm7PSeyLH4oIMi7rTlz54r6Y5dvhvDTaeq3COOxyqQo3DgJycRir6ypWqksWO+UsVjcuup6eJt0zhh60QJjagIJzEHq4TkV9tW0fQjitjfyGczHbcWpfKwFvI3mM4WIxq8Tc+cmZEzppWxaVqbCm9qgOYAi1777A8JstlYQ08NQz+GKNMt1XF7eczzHYdB8TWo06YB5x++/Ypqe/c9Gnpt0z1nalYKDw3ADqAmF40RbcKRxDcL+cRTne7TFJo2ikOkroZYQz2XgDpDpAJDpKkjpOjs3AtVaw0UeE3AdXbBbKwDVm6EHhN9g6TNNUqU8PTHADRVHhMerpPXJM6IrtOpUp4an0AaADVmb7TM5jsYTmr1jZUVmtvWmgFzYcTYQlWq1Rucqb/ir8VB0Dr65zdvm+FxP/L1v6DOTJk32h1UprlWqcpcGACarWO48xVsfLlk8Pt7DVHWkjsaj3yKaVRAbAsdWW24Geb4ipiClMNTRUBXKc1yx4C06uw2rnH4XnVVResBY3v8C8ytirETqZ/TXXLeZjcR337w3WJw5Jzp4XxkvbPpa/U3Xx3HgR1Nk49agCnRhoNMt7cLcCOIldZVxWHJOdNH00vbPbdrwPQfP1YUv08s706mnRZILOXsfagqWR9H3AkWzEbwRwbqnXE6uXNMaNliyQgjwgJXfEVM5eJ5WbOpllfGYVWUlWU11uGG8EX3yo3LrZQ/XcP5GLeoQO8wkSszrcv9lD9bpHsVz6lgm7oeyR+tL5KVU/2walprQZG6Zlu6Nsn5z/IrexBnujbK+c/yK3sSmpaZhBNe/VM4e6Fsr5z/ACavsyP5e7LP60vlp1B/bG4NS0LQZE4X5b7MP63S8uYesTr7Lx1HFIamHqLVp3K518G43jdMb3itZlnixze8QtYysKa2XX5PCZzG4vQDeeMvbbrBQen1TO0Vd3yr31+ngOm88zU2l7cRFY3KVmchVBZibACGxmA5tCDq58I8P3R1Tt7MwyU1c72OmY7/AP5M5yn2qlO4JJPADUnqAEtqzWdSUyReNxww+28KhYkgX6ZncNhmqVRSpgs7tlRRvJP43zsbQxVWqSEpsoPxnHfHsE0vc42NzTVcZWHfD4KlfgN7uOvcPpTKJ1CXjqlqOS3J9MBSO56zgc7UG7T4i/sj0+qrtnHXawOnCH2rtGwstiW3AcB2zgFyW1F/xuM1czts4WBTvreKSFRRvIB6Iplpr27abDxHyfTDpsSv8keebgUhJc0J6m3jaYtNjV+geeHp7IrcQOvW01/NRxSjqTSq2Jp0KS2FtLJTHhE9H+85FV3ds9TwtwX4qDoH3zu4jDgrcgErqD0GcTEAh2HQxE0ZbTw3Y4DJ6pV2ph2q0K1NbBqlKoik7szKQL9WspbT5Q0sPU5qotVnKh/g0VhYkjeWHQZRPLXD3tzWJuOGSmP75piszxDZNojmWebkjtNlRWqYQBCCAHc6jd8SdPZHJnHJiqFevVw7JRNQlaebMc1Nl4gdInf2Jt6nizUWmlRDSCFucCi+a9rWJ6IfbW1FwtMVXVnBdUypYNc3117JnN7z2lhGOkd4XbRjMw/LZAQPc1e7brugvDYHlSKtanQNB6ZqE2ZqqsBZSb2A13TGaWj2ZRes8TDrYnCliGQE1NBZT4fQO3oP2Tt7HxFViadVHDKL52XLcdDX4ypgh8LT/wARPXNTlm3FPZrywrhDIVrhWPQCfRLeSCxS94/7jeozdtq6XzvyZ5H1Np8+yVUpCk65s6lizMCeHZI8oORVPANTXE41VNRWZAmFq1LgGx1U6b5re45XQJjAzKpL0GszAEjI2tjCd0/ZtXE1MK2HVagSnWVyKlMWJZCBqw6/NLrssy8397cH8+/8CvINszCfPh/A151fyaxnif51L25FuTGN8V/Npe1MTbknZ2E+fD+CryJ2fhPny/wdedJ+TOM4Ur9lal7cA3JrG+IP1tL247m1U4HC/PV/hK/3Qb7Pwp/XU/ha/wB0t/k3jfEN9ZS9uL8msZ4h/pJ7UmvpdgYPYlKtUSjRxavVqMFRRhq9yT/l07eAnvextm08Bg6WHUi1JAC3ynOrN5WJMwvcq5LvTrVcXiUyGmuSiGIJBYd++h6LL5Wmi5SbV1yKdO285c1tzp6HhsfbqlS2pjM7mcrZ+0KlPatHDVO8pV6JVP2nPfZj5Uy26+uF2UxqV1D06mTIzipa9LMDYIW6d58ko90Oi1NcNjaf6TDV11vwJBH/AHKvnM24ccxHVLX4rNFvRDe7SwFUJel3x4puJHVMVjQ6uWqU2RjoC6EW7Lz0zZ+JWvSp1k1WqiVF7GAP2wlWgGBVgGU7wwuD5DMr4YtO2rF4iaR0+zx3KS2up3CaeiRTpCkLXUXPbx+2dnavJmiAa1IFClnyDVDY8Ad3k80570kt34uDx4zmtjmOzvx5ovG4cWoAzEnf2XEiKQXXXs3y1Uoqp70nfuI3eWd/YGzNOecat+jBG5fleX1dslMczOjLlitdsdU2JiKpNTm3s2o4abhFPSjSjTp/Hj5cf5dvhpAklkhBHm1yh5ZLLJWj2gBrDvT2TO41fhan77euaeotwR0zM439K/7x9c0ZW7G835bVmTHDInOHmKenR3z67pnlrVQ7HmwWO9bnvRp1Tucu8W1LHgqAb4akLE2+PUmaGPqZy9lu3C+lpuxZIitY6td/9c2bBa17TGPe4+eeGy7nLMamLzixy0dOjV51uXxPuQW389Tt22acXucVi1TFs1rlaB07Xnf5XYOriMNzdABqnOI1mYKLC9zczTa0Tk6t+/LfWkxi6de3H9cPO3qViyE5QfidvnnX2C1X3fhedy73yhRb/htrvMj+Su0SQxGHBXd8Jp6AZ09kcn8amJoVqzYfJSLEhHYtYoRoCuupHGbsuSsxbVpnbnwYb16d0iNb95+/tvcD+lp/4if1Ca20x2Ab4Wl/iJ/UJs5qxcOjJyjaAxulKof2H/pMswWJAyPfdkb1GbWt4Li+QlJQxarfIPFKBp0XM4XvBhjxqeWioHrno+0WurjpU+eZylgsoIzjfoc+IU8NBY2MztqGzHivkj0xtxMNyNw9RQy1TxBHMi4INumVxyZwhc0xWBcXGVaZYnsteavZdMU2qUwxbUNcgqddPjandMfyiphcU5QBw12sA9QZeN+bIsBrp1SxNdb0wvW1Z6Z5WMJyUwlXOFr99T3jm9+/zbjBUeTGFcEpWZ8pAISkWsSDoSBbge20jsfG8zi1NgKdUhCopVEXK+63OE2Abrtv4QeMw7YfEsi2s1/CV63eHXnCKZB0F+wAxuvwx7/K1heSmEqUzV90WRb5stMFgR22G7XfB4bkrhqthSr5yzBQBSJ742sNBbjG2VW5qqUObmcShV8lCoiqToHHOA2A6d2vVAYepUwWKzDLmR7qWZntxFSyHfbgQd+69pN11wsRMzy9RdaWy8HTwdE3yDv34vUOrN576cNJiMTj87kXPElgM2UW32uPXOZtPlE9esgdiqVG76plJy3NtxteH2o1GgqHDPzjMwB+FIa9jqbb/wDeclMczO7PQyZ61r00VRycLhqnug3uc10sb9ua3GU22Qp0NdvKgt6Xl/32r3vzVsosQ1R3UjjcOTCYzaGVVq0zUAJAYFyhp/skLv11vOns4XpvcxxijCU8K9QPUpF+bNsuelmJAA6Rci3QBNnlnz9R5QOrLUUkEZbZq1RiLa3W40M9T5K8t6eJVUqEc54Ia2UOegjg3oPCXbGYaypRDAqdzAg9hmWx2yayEhVNReBW27rF7iaVcUDJ87eYXpFuWzHltThl9m8nWL85XFlG6ne5b962gHVNGUhc0Yy0rFeDJktedyBkihYpm1u2I8QjiYBR7RxJSKqYurlK9BvfyWmcxzjnX/eM02Op3Qkb174eTf6J5LtHadRnf4xzHwVv6pjanUyrbTMd0rED3cNf1el/XUmWOLXpE9DrbP56mKz0lNTM6Znw9JmyixGtQjTUyqNnAbqajsGDT7TMfJ+22Myv3N8YufE6jwKPH9p5uvdi9I88xWIo1QhFIMXzLZUqUWZtbWy0xc75Yw+zNoEX5mt5WC+sx5X2xnJtrDjU+UPPGOOT5QmdXYmPP/Dfy1U9qTHJvHH4gHbUH2R5X2nmNDhdp00qU2LaK6E6HcCJsE27SO4zy48k8aeFIdrn7BNPg9i4hQoYroANLnhNlaRDXe22xTaaHjIY3Gjmqtt/Nvb6JnGw+z6g3n0SzVwTFHW5BZGUEcCQReZ6Y7cKpydxFRbqoIZTbvlOhGlxeZ/Eckds3azrlJNhlvoTu8HslHbHLHaGDY069HCPksCyJlBtxuZxm7rLccNSPZVI/sMltTy34s18celqNn8ldprUL1/hAVyi1PvhrffaZip3L9pBiyuy6mxWm6G3RoeiQ/Ot/wDmXyVz/pSX51V+b/zv/XHpYXva9uqeQ6vcx2k2rVHJta7I5IHaTOxtvkXjKy0yl6dVFyu60iCwtwI1HHz9s5o7qacaDD/q3/si/OjT8S/1g9mXdWHdXfuf7TIsa1QixFjzpFiLEWzbraTo7R5GYqrRorcLWpKqNV5o3cAAC538PSZW/OjS8TU+sHsxfnPo+IqfWL7MbqvdTqdzvHsAGqggXsGVza++3RO1g+RZFJErIruoF3UEEkbj2yge6fR8RU+sX2ZE902l4mp9JPZk9MLuRtock8aXLU3UJYAAobiw7JTPJDGsbVSrJxGUj7JM90ul4l/pL7Mie6XT8Q/019iNwB1+TGOTKKRWyi19Qd532EDS2LjlcM+TeM3fG5Hmln85APg4dyeqov8Apxjy9qt4ODqnsqH7KUnZW95J7eqZlw2JGYnSnW3k6eC/Tu0Pn6ZshVXqniWG23jq7AJhaqC66saxtY3vYAXno+E51wCVqC/ylKn0iWEmGkbFIOMC+0EHETjvgqh6fPKtXZtX8GVNO6dqJ0iKZhtl1fwTFJs09LzRw0FePeRBs0WaCvHvAMhkGSKmdZJjIqtXwtNrZ0R7bs6hrdl5EYSmNyIOxAIZzI3lDCgvADzRe5V6pNDJkwA+5hH9zCEzxZoA/c4kxSEleK8IbmxGKSWaMTAG2GB32MA+z6Z3oh7UU/ZLWcyJeUUzsuj4ql9Wv3Rjsqh4mj9Uv3S5mkS0Cn700PE0Pqk+6L3qw/iaH1SfdLeaNmgVPeqh4mj9Un3R/eyh4qj9Uv3SzeNeBX97qPiqX1a/dF7hpeLp/QX7ocmRzQofuVB8VPoiS5legeYSRMa8IbmxGyCSMa8COQRyBFeNeFMVEgUEkTIkwI82Io+aNAvZo+aKKEOGjhoooE0aSLRRSAbGNeNFAkpjs0eKBG8V4ooEi0bNFFAWaNmiilDZoxaNFAWaNmiigNmjXiigNmjZoooCJkCYopAs0YtFFKGzRi0UUCOaK8UUKjmkS0UUIjmiiigf/9k" width="500" height="auto"/>
+
+## 🚀 Deployment
+
+Both the FastAPI backend and the Streamlit frontend are deployed on Render, containerized with Docker.
+
+## 📂 Repository Structure
+```
+.
+├── api/
+│ ├── models/
+│   └──  *.joblib
+│ ├── app.py
+│ ├── Dockerfile
+│ ├── predict.py
+│ ├── requirements.txt
+│ └── schemas.py
+├── streamlit/
+│ ├── Dockerfile
+│ ├── requirements.txt
+│ └── streamlit_app.py
+├── .gitignore
+└── README.md
+```
+
+## 🏗️ Setup
+
+### Requirements
+
+Both the API and Streamlit applications are containerized and deployed, removing the need for local setup for usage. You can just access the link below for the frontend app. However, if you wish to run them locally or contribute, the dependencies in the `requirements.txt` files are required. More information in the **local development** section below.
+
+## 🔮 Usage
+### Access the Streamlit App:
+Open your web browser and navigate to the [Streamlit app's URL deployed on Render](https://immo-eliza-deployment-streamlit.onrender.com/).
+
+### Enter Property Details:
+Fill in the form with the required property details such as postal zone, property type, construction year, etc.
+
+### Get Price Estimation:
+Click on the "Get Price Estimation" button to submit your request. The predicted property price will be displayed shortly.
+
+## 📚 Additional Information
+For more details on the prediction models, including its accuracy and how it was trained, please refer to the [model card](https://github.com/CoViktor/immo-eliza-ml/blob/main/modelscard.md).
+
+## 🛠️ Local Development
+
+### FastAPI Backend
+
+To run the FastAPI backend locally for development purposes, navigate to the `api/` directory and use `uvicorn` to serve the application. Ensure you have `uvicorn` installed, or install it using pip:
+
+```sh
+pip install uvicorn
+```
+Then, start the FastAPI server with:
+```
+uvicorn api/app:app --reload
+```
+The **--reload** flag enables auto-reload so the server will restart after code changes. By default, the FastAPI app will be available at **http://127.0.0.1:8000**.
+
+### Streamlit Frontend
+To run the Streamlit app locally, navigate to the streamlit/ directory. Make sure Streamlit is installed, or install it using pip:
+```
+pip install streamlit
+```
+Then, start the Streamlit app with:
+```
+streamlit run streamlit/streamlit_app.py
+```
+Streamlit will automatically open the application in your default web browser, typically available at **http://localhost:8501**.
+
+
+
+# 📫 Contact
+For questions, contributions, or collaborations, find me on [LinkedIn](https://www.linkedin.com/in/viktor-cosaert/).
