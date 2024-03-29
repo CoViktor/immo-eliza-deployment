@@ -5,7 +5,7 @@ import json
 st.title('Immo Eliza') 
 st.write('Fill in the form below to predict the price of your dream house!')
 
-PostalZone = st.text_input('What are the 2 first numbers of the postal code (Postal zone)? (e.g. 90):')
+PostalZone = st.text_input('What are the 2 first numbers of the postal code (Postal zone)?')
 if PostalZone and (not PostalZone.isdigit() or len(PostalZone) != 2):
     st.error('Postal zone must be exactly 2 digits.')
 PropertyType = st.selectbox('Property type:', ('House', 'Apartment'))
@@ -17,14 +17,15 @@ else:
     PropertySubType = st.selectbox('Pick one:', ('Option 1', 'Option 2', 'Option 3'))
 ConstructionYear = st.text_input('Construction year:')
 if ConstructionYear and len(ConstructionYear) != 4:
-    st.error('Construction year must be exactly 4 digits.')
+    st.error('Construction year must be exactly 4 digits.')    
 ConstructionYear = int(ConstructionYear) if ConstructionYear else None
-if ConstructionYear and ConstructionYear < 1800:
+if ConstructionYear and ConstructionYear < 1900:
     st.error('Construction year to old for price estimation with this model.')
 if ConstructionYear and ConstructionYear > 2030:
     st.error('Construction year to new for price estimation with this model.')
 BedroomCount = st.slider('Amount of bedrooms:', 0, 10)
 LivingArea = st.slider('Living area in m²:', 0, 1000)
+Facades = st.slider('Amount of facades:', 0, 10)
 Furnished = st.checkbox('Is furnished?')
 Fireplace = st.checkbox('Has a fireplace?')
 Terrace = st.checkbox('Has a terrace?')
@@ -33,9 +34,8 @@ if Garden:
     GardenArea = st.slider('Garden area in m²:', 0, 800)
 else:
     GardenArea = 0
-Facades = st.slider('Amount of facades:', 0, 10)
 SwimmingPool = st.checkbox('Has a swimming pool?')
-Condition = st.radio('Pick one:', ('Good', 'As_New', 'To_Be_Done_Up', 'Just_Renovated', 'To_Renovate', 'To_Restore'))
+Condition = st.radio('State of the property:', ('Good', 'As_New', 'Just_Renovated', 'To_Renovate', 'To_Be_Done_Up', 'To_Restore'))
 EnergyConsumptionPerSqm = st.slider('Energy consumption per square meter:', 0.0, 1000.0)
 
 
