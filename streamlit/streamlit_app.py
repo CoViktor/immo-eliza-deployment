@@ -85,9 +85,15 @@ if required_fields_filled:
                 headers = {'Content-type': 'application/json'}
                 response = requests.post(url, data=json.dumps(data), headers=headers)
                 prediction = response.json()["prediction"]
+
                 st.subheader("Result:")
-                st.markdown(f"The property will probably cost about:<br>**€{round((prediction)/1000)}.000**", unsafe_allow_html=True)
-                st.image('https://media1.tenor.com/m/9RC8mfWlbaQAAAAC/shut-up-and-take-my-money-philip-j-fry.gif')
+
+                if prediction < 0:
+                    st.error('This property has a negative price. I assume you are intentionally breaking my code. If not, contact me for more information.')
+                    st.image('https://i.giphy.com/k1fJn6YLsDKzC.webp')
+                else:
+                    st.markdown(f"The property will probably cost about:<br>**€{round((prediction)/1000)}.000**", unsafe_allow_html=True)
+                    st.image('https://media1.tenor.com/m/9RC8mfWlbaQAAAAC/shut-up-and-take-my-money-philip-j-fry.gif')
 
                 if PropertyType == 'House':
                     r2 = 0.726
