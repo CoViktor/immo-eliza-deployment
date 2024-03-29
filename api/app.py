@@ -13,6 +13,13 @@ async def root():
 
 @app.post("/predict", response_model=OutputData, tags=["predict"])
 async def predict_price(input: InputData):
+    """
+    Receives input data as per the InputData model, uses the `predict_method`
+    to predict a price, and returns the prediction and status code.
+
+    Raises HTTPException with status code 500 if any errors occur during
+    prediction.
+    """
     try:
         input_dict = input.dict()
         prediction = predict_method(input_dict)

@@ -5,6 +5,19 @@ from statsmodels.tools import add_constant
 
 
 def load_training(type: str):
+    """
+    Loads the machine learning model, encoder, scaler, and column order based
+    on the specified property type.
+
+    Parameters:
+    - type (str): The type of the property for which the model and related
+    objects are to be loaded. Expected values are 'house' or 'apartment',
+    case-insensitive.
+
+    Returns:
+    - tuple: A tuple containing the loaded model, encoder, scaler, and column
+    order necessary for preprocessing and prediction.
+    """
     typing = type.upper()
     model = load(f'./models/{typing}_trained_mlr_model.joblib') 
     encoder = load(f'./models/{typing}_encoder.joblib')
@@ -15,6 +28,20 @@ def load_training(type: str):
 
 
 def preprocess_input_data(input_data, propertytype='house'):
+    """
+    Preprocesses the input data for prediction based on the specified property
+    type by encoding categorical features, scaling numerical features, and
+    ensuring the data matches the expected column order.
+
+    Parameters:
+    - input_data (dict): The input data to be preprocessed.
+    - propertytype (str, optional): The type of property ('house' or
+    'apartment'). Defaults to 'house'.
+
+    Returns:
+    - tuple: A tuple containing the preprocessed DataFrame and the loaded
+    model for the specified property type.
+    """
     model, encoder, scaler, column_order = load_training(propertytype)
     df = pd.DataFrame([input_data])
     
@@ -35,6 +62,20 @@ def preprocess_input_data(input_data, propertytype='house'):
 
 
 def predict_method(input_data):
+    """
+    Predicts the price of a property based on the provided input data.
+
+    Parameters:
+    - input_data (dict): The input data for which the prediction is to be made.
+
+    Returns:
+    - float: The predicted price of the property, rounded to two decimal
+    places.
+
+    Raises:
+    - HTTPException: An exception is raised with status code 500 if any errors
+    occur during the prediction process.
+    """
     try:
         property_type = input_data['PropertyType']
 
