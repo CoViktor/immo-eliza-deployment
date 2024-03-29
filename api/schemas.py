@@ -6,7 +6,7 @@ class InputData(BaseModel):
     PostalZone: str  
     PropertyType: str  
     PropertySubType: str  
-    ConstructionYear: Optional[conint(ge=0)] = None  
+    ConstructionYear: conint(ge=0)
     BedroomCount: Optional[conint(ge=0)] = None
     LivingArea: Optional[conint(ge=0)] = None
     Furnished: Optional[int] = None

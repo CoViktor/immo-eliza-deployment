@@ -27,7 +27,7 @@ else:
     GardenArea = 0
 Facades = st.slider('Amount of facades:', 0, 10)
 SwimmingPool = st.checkbox('Has a swimming pool?')
-Condition = PropertySubType = st.radio('Pick one:', ('Good', 'As_New', 'To_Be_Done_Up', 'Just_Renovated', 'To_Renovate', 'To_Restore'))
+Condition = st.radio('Pick one:', ('Good', 'As_New', 'To_Be_Done_Up', 'Just_Renovated', 'To_Renovate', 'To_Restore'))
 EnergyConsumptionPerSqm = st.slider('Energy consumption per square meter:', 0.0, 1000.0)
 
 
@@ -58,14 +58,12 @@ print(response.json())
 
 if st.button("Click me to get a price estimation!"):
     try:
-        # Send a POST request to the API endpoint
         url = 'https://immo-eliza-deployment-api.onrender.com/predict'
         headers = {'Content-type': 'application/json'}
         response = requests.post(url, data=json.dumps(data), headers=headers)
-        # Display the output JSON received from the API
-        prediction1 = response.json()["prediction"]
+        prediction = response.json()["prediction"]
         st.subheader("Result:")
-        st.write(f"The property will probably cost about: €{(prediction1, 2)}")
+        st.write(f"The property will probably cost about: €{prediction}")
     except Exception as e:
         st.error(f"Error: {e}")
 
