@@ -70,6 +70,7 @@ if required_fields_filled:
             prediction = response.json()["prediction"]
             st.subheader("Result:")
             st.write(f"The property will probably cost about: €{round((prediction/1000))}.000")
+            st.image('https://media1.tenor.com/m/9RC8mfWlbaQAAAAC/shut-up-and-take-my-money-philip-j-fry.gif')
         except Exception as e:
             st.error(f"Error: {e}")
 else:
