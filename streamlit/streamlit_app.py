@@ -62,9 +62,9 @@ if st.button("Click me to get a price estimation!"):
         headers = {'Content-type': 'application/json'}
         response = requests.post(url, data=json.dumps(data), headers=headers)
         # Display the output JSON received from the API
-        prediction1 = response.json()["prediction2"]
+        prediction1 = response.json()["prediction"]
         st.subheader("Result:")
-        st.write(f"The property will probably cost about: €{round(prediction1, 2)}")
+        st.write(f"The property will probably cost about: €{(prediction1, 2)}")
     except Exception as e:
         st.error(f"Error: {e}")
 
