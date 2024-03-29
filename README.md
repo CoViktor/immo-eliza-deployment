@@ -79,5 +79,17 @@ Streamlit will automatically open the application in your default web browser, t
 
 
 
-# 📫 Contact
-For questions, contributions, or collaborations, find me on [LinkedIn](https://www.linkedin.com/in/viktor-cosaert/).
+## ⏱️ Project Timeline
+The initial setup of this project was completed in 5 days.
+
+### 🔧 Updates & Upgrades
+### Recent Updates
+
+### Planned Upgrades
+- **Data Pipeline Enhancement**: 
+- **Model Experimentation**: 
+
+## 📌 Personal Situation
+This project was developed as part of my training into machine learning at [BeCode](https://becode.org/). It serves as a practical application of ML model deployment through FastAPI, Render, Docker and Streamlit.
+
+Find me on [LinkedIn](https://www.linkedin.com/in/viktor-cosaert/) for collaboration, feedback, or to connect.
