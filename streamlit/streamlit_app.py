@@ -51,6 +51,7 @@ data = {
 }
 headers = {'Content-type': 'application/json'}
 
+st.write('Data to be sent to the API:', data)
 
 response = requests.post(url, data=json.dumps(data), headers=headers)
 print(response.json())
