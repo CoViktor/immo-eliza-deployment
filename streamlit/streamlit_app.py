@@ -5,8 +5,10 @@ import json
 st.title('Immo Eliza') 
 st.write('Fill in the form below to predict the price of your dream house!')
 
-PostalZone = st.text_input('What are the 2 first numbers of the postal code? (e.g. 90):')
-PropertyType = st.selectbox('Pick one:', ('House', 'Apartment'))
+PostalZone = st.text_input('What are the 2 first numbers of the postal code (Postal zone)? (e.g. 90):')
+if PostalZone and (not PostalZone.isdigit() or len(PostalZone) != 2):
+    st.error('Postal zone must be exactly 2 digits.')
+PropertyType = st.selectbox('Property type:', ('House', 'Apartment'))
 if PropertyType == 'House':
     PropertySubType = st.selectbox('Subtype:', ('House', 'Villa', 'Town_House', 'Apartment_Block', 'Mixed_Use_Building', 'Bungalow ', 'Mansion', 'Exceptional_Property', 'Country_Cottage', 'Chalet', 'Manor_House', 'Other_Property', 'Farmhouse'))
 elif PropertyType == 'Apartment':
@@ -14,7 +16,13 @@ elif PropertyType == 'Apartment':
 else:
     PropertySubType = st.selectbox('Pick one:', ('Option 1', 'Option 2', 'Option 3'))
 ConstructionYear = st.text_input('Construction year:')
+if ConstructionYear and len(ConstructionYear) != 4:
+    st.error('Construction year must be exactly 4 digits.')
 ConstructionYear = int(ConstructionYear) if ConstructionYear else None
+if ConstructionYear and ConstructionYear < 1800:
+    st.error('Construction year to old for price estimation with this model.')
+if ConstructionYear and ConstructionYear > 2030:
+    st.error('Construction year to new for price estimation with this model.')
 BedroomCount = st.slider('Amount of bedrooms:', 0, 10)
 LivingArea = st.slider('Living area in m²:', 0, 1000)
 Furnished = st.checkbox('Is furnished?')
@@ -51,19 +59,18 @@ data = {
 }
 headers = {'Content-type': 'application/json'}
 
-st.write('Data to be sent to the API:', data)
 
-response = requests.post(url, data=json.dumps(data), headers=headers)
-print(response.json())
-
-if st.button("Click me to get a price estimation!"):
-    try:
-        url = 'https://immo-eliza-deployment-api.onrender.com/predict'
-        headers = {'Content-type': 'application/json'}
-        response = requests.post(url, data=json.dumps(data), headers=headers)
-        prediction = response.json()["prediction"]
-        st.subheader("Result:")
-        st.write(f"The property will probably cost about: €{prediction}")
-    except Exception as e:
-        st.error(f"Error: {e}")
-
+required_fields_filled = PostalZone and ConstructionYear is not None and len(PostalZone) == 2 and PostalZone.isdigit()
+if required_fields_filled:
+    if st.button("Click me to get a price estimation!"):
+        try:
+            url = 'https://immo-eliza-deployment-api.onrender.com/predict'
+            headers = {'Content-type': 'application/json'}
+            response = requests.post(url, data=json.dumps(data), headers=headers)
+            prediction = response.json()["prediction"]
+            st.subheader("Result:")
+            st.write(f"The property will probably cost about: €{round((prediction/1000))}.000")
+        except Exception as e:
+            st.error(f"Error: {e}")
+else:
+    st.write("Please fill in all required fields to get a price estimation.")
